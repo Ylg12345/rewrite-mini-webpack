@@ -1,0 +1,27 @@
+{
+  "name": "rewrite-mini-webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node examples/webpack.config.cjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/parser": "^7.21.2",
+    "@babel/traverse": "^7.21.2",
+    "@types/node": "^18.14.6",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "tapable": "^2.2.1"
+  },
+  "dependencies": {
+    "ejs": "^3.1.8"
+  }
+}
