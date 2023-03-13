@@ -1,7 +1,14 @@
 ;(function(modules) {
 
+  let cache = {};
+
   function require(id) {
+
     const [fn, mapping] = modules[id];
+
+    if (cache[id]) {
+      return cache[id].exports;
+    }
 
     const module = {
       exports: {},
@@ -11,6 +18,8 @@
       const id = mapping[filePath];
       return require(id);
     }
+
+    cache[id] = module;
 
     fn(localRequire, module, module.exports)
 
@@ -33,10 +42,15 @@ var _user2 = _interopRequireDefault(_user);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var _require = require('./nest/test1.cjs'),
+    test1 = _require.test1;
+
 (0, _foo.foo)();
+(0, _test.test)();
+test1();
 console.log('main.js');
 console.log(JSON.parse(_user2.default));
-    }, {"./foo.js":1,"./nest/test.js":2,"../static/user.json":3}],
+    }, {"./foo.js":1,"./nest/test.js":2,"../static/user.json":3,"./nest/test1.cjs":4}],
   
     1: [function(require, module, exports) {
       "use strict";
@@ -52,7 +66,7 @@ function foo() {
   (0, _bar.bar)();
   console.log('foo.js');
 }
-    }, {"./bar.js":4}],
+    }, {"./bar.js":5}],
   
     2: [function(require, module, exports) {
       "use strict";
@@ -77,6 +91,18 @@ exports.default = "{\r\n  \"name\": \"ylg\",\r\n  \"age\": 24,\r\n  \"career\": 
     }, {}],
   
     4: [function(require, module, exports) {
+      "use strict";
+
+function test1() {
+  console.log('test1');
+}
+
+module.exports = {
+  test1: test1
+};
+    }, {}],
+  
+    5: [function(require, module, exports) {
       "use strict";
 
 Object.defineProperty(exports, "__esModule", {
