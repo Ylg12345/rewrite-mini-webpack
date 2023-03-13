@@ -1,7 +1,13 @@
 ;(function(modules) {
 
+  let cache = {};
+
   function require(id) {
     const [fn, mapping] = modules[id];
+
+    if (cache[id]) {
+      return cache[id].exports;
+    }
 
     const module = {
       exports: {}
@@ -12,6 +18,8 @@
 
       return require(id);
     }
+
+    cache[id] = module;
 
     fn(localRequire, module, module.exports);
 

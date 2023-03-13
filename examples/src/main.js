@@ -1,5 +1,5 @@
 import { foo } from './foo.js';
-import { test } from './nest/test.js';
+import { test } from './nest/test.js'; 
 
 import user from '../static/user.json';
 
